@@ -34,7 +34,7 @@
   (setq c-indent-level 4)
   (setq tab-stop-list '(4 8 12 16 20 24 28 32 36 40 44 48 52 56 60))
   (setq tab-width 4)
-  (setq indent-tabs-mode t)
+  (setq indent-tabs-mode nil)
   (local-set-key (kbd "C-c o") 'ff-find-other-file)
   )
 
@@ -46,7 +46,8 @@
 (which-key-mode)
 
 
-(load-file "~/.emacs.d/my_move_mode.el")
+(load-file "~/.emacs.d/my-move-mode.el")
+(my-move-mode)
 
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -67,7 +68,7 @@
  '(electric-pair-open-newline-between-pairs nil)
  '(markdown-command "/usr/bin/pandoc")
  '(package-selected-packages
-   '(my_move_mode mo-vi-ment-mode which-key magit blamer git auctex projectile eglot spacemacs-theme company-c-headers tree-sitter-langs tree-sitter zygospore use-package undo-tree dtrt-indent company comment-dwim-2 clean-aindent-mode anzu))
+   '(cmake-mode my_move_mode mo-vi-ment-mode which-key magit blamer git auctex projectile eglot spacemacs-theme company-c-headers tree-sitter-langs tree-sitter zygospore use-package undo-tree dtrt-indent company comment-dwim-2 clean-aindent-mode anzu))
  '(truncate-lines t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
