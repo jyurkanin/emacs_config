@@ -183,6 +183,8 @@ The DWIM behaviour of this command is as follows:
 (global-undo-tree-mode)
 (setq undo-tree-auto-save-history nil)
 
+(add-to-list 'default-frame-alist '(undecorated . t))
+
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 (global-set-key (kbd "M-o") 'ace-window)
 
