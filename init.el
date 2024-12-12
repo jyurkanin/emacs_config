@@ -15,6 +15,28 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package dired
+  :ensure nil
+  :commands (dired)
+  :hook
+  ((dired-mode . dired-hide-details-mode)
+   (dired-mode . hl-line-mode))
+  :config
+  (setq dired-recursive-copies 'always)
+  (setq dired-recursive-deletes 'always))
+
+(use-package dired-subtree
+  :ensure t
+  :after dired
+  :bind
+  ( :map dired-mode-map
+    ("<tab>" . dired-subtree-toggle)
+    ("TAB" . dired-subtree-toggle)
+    ("<backtab>" . dired-subtree-remove)
+    ("S-TAB" . dired-subtree-remove))
+  :config
+  (setq dired-subtree-use-backgrounds nil))
+
 (use-package git)
 
 (use-package tree-sitter)
@@ -134,11 +156,11 @@ The DWIM behaviour of this command is as follows:
  '(package-selected-packages
    '(ace-window achievements all-the-icons anzu auctex blamer
                 clean-aindent-mode cmake-mode company
-                company-c-headers compat dap-mode doom-modeline
-                dtrt-indent ellama git golden-ratio magit orderless
-                prescient solaire-mode spacemacs-theme tree-sitter
-                tree-sitter-langs undo-tree use-package vertico
-                vertico-prescient which-key zygospore))
+                company-c-headers compat dap-mode dired-subtree
+                doom-modeline dtrt-indent ellama git golden-ratio
+                magit orderless prescient solaire-mode spacemacs-theme
+                tree-sitter tree-sitter-langs undo-tree use-package
+                vertico vertico-prescient which-key zygospore))
  '(truncate-lines t))
 
 
@@ -174,3 +196,9 @@ The DWIM behaviour of this command is as follows:
   (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
   (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
 
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
