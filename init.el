@@ -37,6 +37,20 @@
   :config
   (setq dired-subtree-use-backgrounds nil))
 
+(use-package lsp-mode
+  :ensure t
+  :config
+  (require 'dap-cpptools)
+  )
+
+(use-package dap-mode
+  :ensure t
+  :preface
+  (defvar dap-mode-was-just-installed (not (package-installed-p 'dap-mode)))
+  :config
+  (if dap-mode-was-just-installed (dap-cpptools-setup))
+  )
+
 (use-package git)
 
 (use-package tree-sitter)
@@ -152,15 +166,17 @@ The DWIM behaviour of this command is as follows:
  '(custom-safe-themes t)
  '(electric-pair-mode nil)
  '(electric-pair-open-newline-between-pairs nil)
+ '(fringe-mode '(1 . 1) nil (fringe))
  '(markdown-command "/usr/bin/pandoc")
  '(package-selected-packages
    '(ace-window achievements all-the-icons anzu auctex blamer
                 clean-aindent-mode cmake-mode company
                 company-c-headers compat dap-mode dired-subtree
                 doom-modeline dtrt-indent ellama git golden-ratio
-                magit orderless prescient solaire-mode spacemacs-theme
-                tree-sitter tree-sitter-langs undo-tree use-package
-                vertico vertico-prescient which-key zygospore))
+                google-this magit orderless prescient solaire-mode
+                spacemacs-theme tree-sitter tree-sitter-langs
+                undo-tree use-package vertico vertico-prescient
+                which-key zygospore))
  '(truncate-lines t))
 
 
@@ -174,16 +190,12 @@ The DWIM behaviour of this command is as follows:
 (global-company-mode t)
 (global-auto-revert-mode t)
 (dtrt-indent-global-mode t)
-;; (solaire-global-mode +1)
-;; (golden-ratio-mode 1)
 (doom-modeline-mode 1)
 (achievements-mode +1)
 
 (add-to-list 'company-backends 'company-c-headers)
 (global-undo-tree-mode)
 (setq undo-tree-auto-save-history nil)
-
-(add-to-list 'default-frame-alist '(undecorated . t))
 
 (global-set-key (kbd "C-x 1") 'zygospore-toggle-delete-other-windows)
 (global-set-key (kbd "M-o") 'ace-window)
@@ -198,9 +210,12 @@ The DWIM behaviour of this command is as follows:
   (set-face-attribute 'fixed-pitch nil :family mono-spaced-font :height 1.0)
   (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(setq buffer-age-limit 1800)
+
+(set-face-foreground 'vertical-border (if (true-color-p) "#292b2e" "#262626"))
+(set-face-attribute  'mode-line          nil :box nil)
+(set-face-attribute  'mode-line-inactive nil :box nil)
+(set-face-background 'mode-line          "gray9")
+(set-face-background 'mode-line-inactive "gray9")
+(set-face-background 'doom-modeline-bar  "white")
+(set-face-background 'doom-modeline-bar-inactive "gray9")
