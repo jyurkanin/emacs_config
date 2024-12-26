@@ -172,12 +172,13 @@ The DWIM behaviour of this command is as follows:
    '(ace-window achievements all-the-icons anzu auctex blamer
                 clean-aindent-mode cmake-mode company
                 company-c-headers compat dap-mode dired-subtree
-                doom-modeline dtrt-indent ellama git golden-ratio
-                google-this magit orderless prescient solaire-mode
-                spacemacs-theme tree-sitter tree-sitter-langs
-                undo-tree use-package vertico vertico-prescient
-                which-key zygospore))
- '(truncate-lines t))
+                doom-modeline dtrt-indent ellama evil git god-mode
+                golden-ratio google-this magit orderless prescient
+                solaire-mode spacemacs-theme tree-sitter
+                tree-sitter-langs undo-tree use-package vertico
+                vertico-prescient which-key zygospore))
+ '(truncate-lines t)
+ '(window-divider-default-right-width 18))
 
 
 (put 'downcase-region 'disabled nil)
@@ -211,6 +212,8 @@ The DWIM behaviour of this command is as follows:
   (set-face-attribute 'variable-pitch nil :family proportionately-spaced-font :height 1.0))
 
 (setq buffer-age-limit 1800)
+(setq inhibit-startup-screen t)
+
 
 (set-face-foreground 'vertical-border (if (true-color-p) "#292b2e" "#262626"))
 (set-face-attribute  'mode-line          nil :box nil)
@@ -219,3 +222,10 @@ The DWIM behaviour of this command is as follows:
 (set-face-background 'mode-line-inactive "gray9")
 (set-face-background 'doom-modeline-bar  "white")
 (set-face-background 'doom-modeline-bar-inactive "gray9")
+(set-face-background 'line-number        "grey9")
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
