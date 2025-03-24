@@ -1,5 +1,5 @@
 ;;; TODO: Install an lsp for python
-;;; TODO: dired-find-alternate-file
+;;; TODO: DIRED-find-alternate-file
 
 
 
@@ -20,13 +20,43 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(use-package ace-window :ensure t)
+(use-package anzu :ensure t)
+(use-package auctex :ensure t)
+(use-package blamer :ensure t)
+(use-package clean-aindent-mode :ensure t)
+(use-package cmake-mode :ensure t)
+(use-package company-c-headers :ensure t)
+(use-package compat :ensure t)
+(use-package counsel-at-point :ensure t)
+(use-package doom-modeline :ensure t)
+(use-package dtrt-indent :ensure t)
+(use-package git :ensure t)
+(use-package google-this :ensure t)
+(use-package magit :ensure t)
+(use-package projectile :ensure t)
+(use-package pyvenv :ensure t)
+(use-package ripgrep :ensure t)
+(use-package spacemacs-theme :ensure t)
+(use-package tree-sitter :ensure t)
+(use-package tree-sitter-langs :ensure t)
+(use-package undo-tree :ensure t)
+(use-package use-package :ensure t)
+(use-package which-key :ensure t)
+(use-package zygospore :ensure t)
+
 (use-package company
   :ensure t
-  :bind
-  ( :map company-mode-map
-    ("M-s /" . company-complete))
+  :config (setq company-idle-delay 100))
+
+(use-package consult
+  :ensure t
   :config
-  (setq company-idle-delay 100)
+  )
+
+(use-package consult-lsp
+  :ensure t
+  :config
   )
 
 (use-package dired
@@ -61,8 +91,8 @@
   :after lsp-mode
   :ensure t
   :config
-  (setq lsp-ui-doc-enable t
-        lsp-ui-sideline-enable nil)
+;;;  (setq lsp-ui-doc-enable t
+;;;        lsp-ui-sideline-enable nil)
   )
 
 (use-package dap-mode
@@ -72,11 +102,6 @@
   :config
   (if dap-mode-was-just-installed (dap-cpptools-setup))
   )
-
-(use-package git)
-
-(use-package tree-sitter)
-(use-package tree-sitter-langs)
 
 (use-package orderless
   :ensure t
@@ -91,11 +116,13 @@
   ;; (vertico-count 20) ;; Show more candidates
   ;; (vertico-resize t) ;; Grow and shrink the Vertico minibuffer
   ;; (vertico-cycle t) ;; Enable cycling for `vertico-next/previous'
+  :ensure t
   :init
   (vertico-mode)
 )
 
 (use-package prescient
+  :ensure t
   :custom
   (prescient-filter-method '(literal regexp initialism fuzzy))
   :catch (lambda (keyword err) (message (error-message-string err)))
@@ -105,16 +132,19 @@
 (use-package vertico-prescient
   :init
   (vertico-prescient-mode)
+  :ensure t
   :catch (lambda (keyword err) (message (error-message-string err)))
   )
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
+  :ensure t
   :init
   (savehist-mode))
 
-(use-package golden-ratio)
-(use-package all-the-icons :if (display-graphic-p))
+(use-package all-the-icons
+  :ensure t
+  :if (display-graphic-p))
 
 (use-package ellama
   :bind ("C-c e" . ellama-transient-main-menu)
@@ -185,6 +215,7 @@ The DWIM behaviour of this command is as follows:
 (define-key global-map (kbd "M-s w") #'copy-symbol-at-point)
 (define-key global-map (kbd "M-s S") #'counsel-rg)
 (define-key global-map (kbd "M-s d") #'lsp-ui-doc-show)
+(define-key global-map (kbd "M-s i") #'lsp-ui-imenu)
 
 (defun my-c++-mode-hook ()
   (c-set-offset 'substatement-open 0)
@@ -228,11 +259,11 @@ The DWIM behaviour of this command is as follows:
  '(package-selected-packages
    '(ace-window achievements all-the-icons anzu auctex blamer
                 clean-aindent-mode cmake-mode company
-                company-c-headers compat consult counsel-at-point
-                dap-mode dired-subtree doom-modeline dtrt-indent
-                ellama evil git god-mode golden-ratio google-this
-                gptel lsp-ui magit orderless prescient projectile
-                pyvenv ripgrep solaire-mode spacemacs-theme
+                company-c-headers compat consult consult-lsp
+                counsel-at-point dap-mode dired-subtree doom-modeline
+                dtrt-indent ellama evil git god-mode golden-ratio
+                google-this gptel lsp-ui magit orderless prescient
+                projectile pyvenv ripgrep solaire-mode spacemacs-theme
                 tree-sitter tree-sitter-langs undo-tree use-package
                 vertico vertico-prescient which-key zygospore))
  '(truncate-lines t)
