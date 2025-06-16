@@ -45,6 +45,55 @@
 (use-package which-key :ensure t)
 (use-package zygospore :ensure t)
 
+(use-package emacs
+  :ensure t
+  ;;; :bind
+  ;;; (())
+  :custom
+  (completions-detailed t)
+  (display-line-numbers-width 3)
+  (enable-recursive-minibuffers nil)
+  (help-window-select t)
+  (ring-bell-function 'ignore)
+  (setenv "GIT_EDITOR" (format "emacs --init-dir=%s " (shell-quote-argument user-emacs-directory)))
+  (with-current-buffer (get-buffer-create "*scratch*")
+    (insert (format ";; Started emacs
+;; Loading Time %s
+;; Packages     %d" (emacs-init-time) (length package-activated-list))))
+  )
+
+(use-package window
+  :ensure nil
+  :custom
+  (display-buffer-alist
+   '(
+     ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|Messages\\|Bookmark List\\|Occur\\|eldoc\\)\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 0))
+     ("\\*\\([Hh]elp\\)\\*"
+      (display-buffer-in-side-window)
+      (window-width . 75)
+      (side . right)
+      (slot . 0))
+     ("\\*\\(Ibuffer\\)\\*"
+      (display-buffer-in-side-window)
+      (window-width . 100)
+      (side . right)
+      (slot . 1))
+     ("\\*\\(Flymake diagnostics\\|xref\\|Completions\\)"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 1))
+     ("\\*\\(grep\\|find\\)\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 2))
+     )))
+
 (use-package company
   :ensure t
   :config (setq company-idle-delay 100))
