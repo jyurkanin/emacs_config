@@ -262,7 +262,7 @@ The DWIM behaviour of this command is as follows:
 (define-key global-map (kbd "M-s s") #'counsel-at-point-rg)
 (define-key global-map (kbd "M-s f") #'project-find-file-at-point)
 (define-key global-map (kbd "M-s w") #'copy-symbol-at-point)
-(define-key global-map (kbd "M-s S") #'counsel-rg)
+(define-key global-map (kbd "M-s S") #'consult-ripgrep)
 (define-key global-map (kbd "M-s d") #'lsp-ui-doc-show)
 (define-key global-map (kbd "M-s i") #'lsp-ui-imenu)
 
